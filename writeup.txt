@@ -1,0 +1,50 @@
+Eddie Rosenblum
+Assignment6
+
+Problem 1: Contains
+-------------------
+Critical operations: Math.abs()
+Input: dubs.length
+Worst case: there exists no double 'key' s.t. abs(key - d) lt eps within the double[] dubs OR that dubs[dubs.length - 1] == key
+Model T: T(n) = n
+Big-O: T ∈ O(n), c = 1, x_0 = 1
+
+Problem 2: Fast Exponentiation
+----------------------------------
+Critical operations: %
+Input: y (for these analyses, y is a power of two)
+Recurrence relation: T(1) = 1, T(n) = 2log_2(n) + 1
+	   Expansion:k = 1 T(n) = 2 + T(n/2)
+	   	     k = 2      = 2 + 2 + T(n/4)
+	             k = 3      ...log_2(n) times...
+			        = 2k + T(n/(2^k))
+	Our base case is T(1) = 1
+	So when k = log_2(n),  T(n) = 2log_2(n) + T(1)
+	Therefore, T(n) = 2log_2(n) + 1
+	   	   
+Big-O: T ∈ O(log_2(n)), c = 3, x_0 = 2
+
+Problem 3: All Pairs
+----------------------
+Critical operations: array accesses and assignment
+Input: arr.length
+Model T: T(n) = 3n^2
+Big O = T ∈ O(n^2), c = 3, x_0 = 1
+
+Problem 4: Concat-replicate
+----------------------------
+Critical operations: string concatenation
+Input: arr.length
+Big-O: T ∈ O(n), because the outer loop runs arr.length times and the inner runs n times, so T(n) = T(cn)
+
+If Java String concatenation is O(n+m) and not 0(1), then the concatAndReplicateAll would become O(n^2), as it is as if another loop runs within the concatenation line, and it runs some constant amount of times, geometrically increasing the "time" spent.
+
+Problem 5: Interleave
+----------------------
+Critical operations: array assignments
+Input: arr1.length + arr2.length
+Big-O: T ∈ O(n), because we only traverse each array once to do the assignments, and their sum (arr1.length + arr2.length) is equal to n.
+
+Space complexity: S ∈ O(n), as the array created is equal to the length of our input n
+
+Considering the previous problems' time and space complexity (and thinking about it just logically), time complexity has a lower bound of space complexity (here, they are almost all equal), for you have to spend a constant unit of time visiting all the elements in the space allocated, if not a linear or exponential amount of time. 
